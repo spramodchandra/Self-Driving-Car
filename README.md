@@ -16,6 +16,15 @@ We implemented a multithreaded program to distribute the load equally and we wer
   <li> Battery Charge – <a href="https://hobbyking.com/en_us/imax-b6-ac-dc-charger-5a-50w-with-us-plug-copy.html">IMAX B6 AC-DC Charger 5A 50W With US Plug</a></li>
  </ul>
  
+ ### Car
+ Below images show the different components of car.
+ <br/>
+ <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/picamera.jpg" width = "350px" height = "300px"/>
+ <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/pihat.jpg" width = "350px" height = "300px"/>
+  <br/>
+ <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/raspberrypi.jpg" width = "350px" height = "300px"/>
+ <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/car.jpg" width = "350px" height = "300px"/>
+ 
  ### Software
  <ul>
   <li> Python + Numpy + OpenCV on the Raspberry Pi</li>
@@ -27,7 +36,16 @@ We implemented a multithreaded program to distribute the load equally and we wer
  Next convert the image into b/w.( This step is required for using <a href="https://docs.opencv.org/3.3.1/d4/d73/tutorial_py_contours_begin.html">contours</a>).
  Based on the contours, we select the one with maximum region. Based on the boundary points, we divide the image into 5 parts, and find the mid points. Using these mid points we can determine the curvature of the track.
 
-Below images show the image and processed image.
+Below are original and processed images.
 <br/>
-<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/original.jpg"/>
-<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/processedimage.jpg"/>
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/original.jpg" width = "400px" height = "400px"/>
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/processedimage.jpg" width = "400px" height = "400px"/>
+<br/>
+
+### PID Controller
+After we get the points, we calculate the target point ( where you would like the car to be). Using this target point, curvature of road, we calculate the cross track error, which is fed to a PID controller. This gives us angle with which we need to steer.
+Using curvature and the error we dynamically adjust the speed so that we dont overshoot during turnings.
+
+### Servo and DC motor Control
+Based on the PID controller and speed logic now we need to adjust the servo motor and DC motor.
+We use pulse width modulation (i.e. period and dutycycle) to control the signal which we give to these hardware.
