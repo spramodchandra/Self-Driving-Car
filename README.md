@@ -1,4 +1,4 @@
-# Autonomous Racing car With a Raspberry Pi and a Pi Camera.
+# Autonomous Racing car with Raspberry Pi and Pi Camera.
 For a <a href="https://sites.google.com/usc.edu/raceon/home?authuser=0">racing competition</a> at USC couple of my friends and I built and programmed an autonomous car using raspberry pi and a pi camera. We used OpenCV for image processing and pid cotroller for controlling the car. We secured 2nd position in this competition.
 <br>
 We implemented a multithreaded program to distribute the load equally and we were able to do 40fps.
@@ -34,7 +34,7 @@ We implemented a multithreaded program to distribute the load equally and we wer
  To control the car and to navigate it along the track, we need to predict the turns, so as to dynamically change the speed.
  First we define a region of interest.
  Next convert the image into b/w.( This step is required for using <a href="https://docs.opencv.org/3.3.1/d4/d73/tutorial_py_contours_begin.html">contours</a>).
- Based on the contours, we select the one with maximum region. Based on the boundary points, we divide the image into 5 parts, and find the mid points. Using these mid points we can determine the curvature of the track.
+ Based on the contours, we select the one with maximum region. Based on the boundary points, we divide the image into 5 parts, and find the mid points. Using these mid points we can determine the curvature of the track. After we get the points, we calculate the target point ( where you would like the car to be). Using this we calculate the cross track error.
 
 Below are original and processed images.
 <br/>
@@ -42,10 +42,26 @@ Below are original and processed images.
 <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/processedimage.jpg" width = "400px" height = "400px"/>
 <br/>
 
-### PID Controller
-After we get the points, we calculate the target point ( where you would like the car to be). Using this target point, curvature of road, we calculate the cross track error, which is fed to a PID controller. This gives us angle with which we need to steer.
-Using curvature and the error we dynamically adjust the speed so that we dont overshoot during turnings.
+### Controller: Following the Line
+Once we have processed the image and computed our deviation from the center of the line, we need to correct our error by regulating the car direction and speed.
+
+For this purpose, we used a proportional-integral-derivative (PID) controller to follow the line. The speed is regulated using:  current deviation to the line center (which is the error) and how sharp is the line curve. The bigger the error, the lower the speed.
 
 ### Servo and DC motor Control
 Based on the PID controller and speed logic now we need to adjust the servo motor and DC motor.
 We use pulse width modulation (i.e. period and dutycycle) to control the signal which we give to these hardware.
+
+### HTTP Server
+We used python to host a simple http server, which has a video feed of source and processed video which helps to analayse.
+We can use this webpage to remotly control the car using keyword or by buttons on the page. 
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/server.gif"/>
+
+### Car in Action
+Car runs on different <br/>
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video1.gif" />
+
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video2.gif"/>
+
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video3.gif"/>
+
+<img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video4.gif"/>
