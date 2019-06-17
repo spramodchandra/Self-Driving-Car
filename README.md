@@ -57,7 +57,7 @@ We can use this webpage to remotly control the car using keyword or by buttons o
 <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/server.gif"/>
 
 ### Car in Action
-Car runs on different <br/>
+Car runs on different tracks<br/>
 <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video1.gif" />
 
 <img src="https://raw.githubusercontent.com/spramodchandra/Self-Driving-Car/master/images/video2.gif"/>
