@@ -1,5 +1,5 @@
 # Autonomous Racing car with Raspberry Pi and Pi Camera.
-For a <a href="https://sites.google.com/usc.edu/raceon/home?authuser=0">racing competition</a> at USC couple of my friends and I built and programmed an autonomous car using raspberry pi and a pi camera. We used OpenCV for image processing and pid cotroller for controlling the car. We secured 2nd position in this competition.
+For a <a href="https://sites.google.com/usc.edu/raceon/home?authuser=0">racing competition</a> at USC couple of my friends and I built and programmed an autonomous car using raspberry pi and a pi camera. We used OpenCV for image processing and pid cotroller for controlling the car. We secured <a href="https://minghsiehece.usc.edu/race-on/">2nd position</a> in this competition. 
 <br>
 We implemented a multithreaded program to distribute the load equally and we were able to do 40fps.
 ### Hardware
